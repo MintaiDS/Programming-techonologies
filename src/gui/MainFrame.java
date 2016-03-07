@@ -1,11 +1,7 @@
-import javax.imageio.ImageIO;
+package gui;
+
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 
 public class MainFrame extends JFrame {
 
@@ -16,15 +12,25 @@ public class MainFrame extends JFrame {
     public JPanel createInstrumentsPanel() {
         JPanel panel = new JPanel();
 
+        JButton point = new JButton("Point");
+
         JButton line = new JButton("Line");
         JButton ray = new JButton("Ray");
         JButton segment = new JButton("Segment");
 
+        JButton circle = new JButton("Circle");
+        JButton ellipse = new JButton("Ellipse");
+
         panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
+
+        panel.add(point);
 
         panel.add(line);
         panel.add(ray);
         panel.add(segment);
+
+        panel.add(circle);
+        panel.add(ellipse);
 
         panel.setBackground(Color.decode("#7986CB"));
 
@@ -44,7 +50,16 @@ public class MainFrame extends JFrame {
 
     public static void main(String[] args) {
         MainFrame mf = new MainFrame();
-        mf.setSize(new Dimension(800, 400));
+
+        int width = 1000;
+        int height = 600;
+        mf.setSize(new Dimension(width, height));
+
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        int screenWidth = (int)screenSize.getWidth();
+        int screenHeight = (int)screenSize.getHeight();
+        mf.setLocation((screenWidth - width)/2, (screenHeight - height)/2);
+
         mf.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         mf.setVisible(true);
     }
