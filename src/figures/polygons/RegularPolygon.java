@@ -24,5 +24,6 @@ public class RegularPolygon extends Polygon {
             res.add(new Point(x + fPoint.x ,y + fPoint.y));
         }
         setPoints(res);
+        setCenter(fPoint);
     }
 }

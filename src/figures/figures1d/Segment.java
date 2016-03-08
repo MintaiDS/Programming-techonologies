@@ -39,9 +39,9 @@ public class Segment extends Base {
 
     @Override
     public void move(Point newCenter) {
-        this.setP1(new Point(p1.x+newCenter.x, p1.y+newCenter.y));
-        this.setP2(new Point(p2.x+newCenter.x, p2.y+newCenter.y));
-        this.setCenter(newCenter);
+        Point p = this.diff(newCenter);
+        this.setP1(new Point(p1.x+p.x, p1.y+p.y));
+        this.setP2(new Point(p2.x+p.x, p2.y+p.y));
     }
 
     public void draw(Graphics2D g) {

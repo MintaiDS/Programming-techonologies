@@ -13,6 +13,8 @@ public class Polygon extends Base2D {
         this.points = new ArrayList<>();
     }
     public void addPoint(Point p){
+        if (points.size() == 0)
+            this.setCenter(p);
         points.add(p);
     }
     public int getPointsNumber(){
@@ -23,6 +25,7 @@ public class Polygon extends Base2D {
     }
 
     public void setPoints(ArrayList<Point> points) {
+        this.setCenter(points.get(0));
         this.points = points;
     }
 
@@ -43,9 +46,10 @@ public class Polygon extends Base2D {
 
     @Override
     public void move(Point newCenter) {
+        Point pt = this.diff(newCenter);
         for (Point p: points){
-            p.x += newCenter.x;
-            p.y += newCenter.y;
+            p.x += pt.x;
+            p.y += pt.y;
         }
         this.setCenter(newCenter);
     }

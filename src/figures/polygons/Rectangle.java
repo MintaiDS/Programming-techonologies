@@ -19,6 +19,17 @@ public class Rectangle extends Polygon{
         res[3] = Math.abs(res[1]-secondPoint.y);
         return res;
     }
+
+    @Override
+    public void addPoint(Point p) {
+        points.add(p);
+        if (points.size() == 2){
+            Point p1 = points.get(0);
+            Point p2 = points.get(1);
+            this.setCenter(new Point((p1.x+p2.x)/2,(p1.y+p2.y)/2));
+        }
+    }
+
     @Override
     public void draw(Graphics2D g) {
         g.setColor(this.getFillColor());

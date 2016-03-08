@@ -27,6 +27,11 @@ public class Base {
 
     public void move(Point newCenter) {}
 
+    protected Point diff(Point newCenter){
+        Point oldCenter = this.getCenter();
+        return new Point(newCenter.x - oldCenter.x, newCenter.y - oldCenter.y);
+    }
+
     public Point location() {
         return this.getCenter();
     }
