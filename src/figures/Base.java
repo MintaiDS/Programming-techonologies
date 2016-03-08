@@ -4,12 +4,30 @@ package figures;
 import java.awt.*;
 
 public class Base {
-    public Point center = null;
+    private Point center = null;
     private Color lineColor;
 
-    void draw() {}
+    public Point getCenter() {
+        return center;
+    }
 
-    void move() {}
+    public void setCenter(Point center) {
+        this.center = center;
+    }
 
-    void location() {}
+    public Color getLineColor() {
+        return lineColor;
+    }
+
+    public void setLineColor(Color lineColor) {
+        this.lineColor = lineColor;
+    }
+
+    public void draw(Graphics2D g) {}
+
+    public void move(Point newCenter, Graphics2D g) {}
+
+    public Point location() {
+        return center;
+    }
 }
