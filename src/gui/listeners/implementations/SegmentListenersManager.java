@@ -2,6 +2,7 @@ package gui.listeners.implementations;
 
 
 import gui.listeners.IListenersManager;
+import util.CustomMath;
 import util.Pair;
 
 import javax.swing.*;
@@ -70,8 +71,10 @@ public class SegmentListenersManager implements IListenersManager {
             @Override
             public void mouseMoved(MouseEvent e) {
                 if(firstSelected && !secondSelected) {
+
                     second.x = e.getX();
                     second.y = e.getY();
+
                     paintPanel.repaint();
                     System.out.println("Move");
                 }
@@ -82,7 +85,8 @@ public class SegmentListenersManager implements IListenersManager {
     public ArrayList<Point> provideDataForDrawing() {
         ArrayList<Point> result = new ArrayList<>();
         result.add(first);
-        result.add(second);
+        result.add(CustomMath.getRayEnd(first, second));
+        //result.add(second);
         return result;
     }
 }

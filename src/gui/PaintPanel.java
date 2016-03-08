@@ -25,7 +25,12 @@ public class PaintPanel extends JPanel {
 
         if(mainFrame.drawingSegment) {
             ArrayList<Point> points = mainFrame.listenersManager.provideDataForDrawing();
+            //g2.draw(new Line2D.Double(points.get(0), points.get(1)));
             g2.draw(new Line2D.Double(points.get(0), points.get(1)));
+        }
+
+        if(mainFrame.drawingRay) {
+
         }
     }
 
