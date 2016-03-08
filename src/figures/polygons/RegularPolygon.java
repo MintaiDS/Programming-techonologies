@@ -2,6 +2,7 @@ package figures.polygons;
 
 
 import java.awt.*;
+import java.awt.geom.AffineTransform;
 import java.util.ArrayList;
 
 public class RegularPolygon extends Polygon {
@@ -23,6 +24,5 @@ public class RegularPolygon extends Polygon {
             res.add(new Point(x + fPoint.x ,y + fPoint.y));
         }
         setPoints(res);
-        setPointNumber(res.size());
     }
 }

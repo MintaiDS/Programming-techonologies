@@ -25,9 +25,9 @@ public class Base {
 
     public void draw(Graphics2D g) {}
 
-    public void move(Point newCenter, Graphics2D g) {}
+    public void move(Point newCenter) {}
 
     public Point location() {
-        return center;
+        return this.getCenter();
     }
 }

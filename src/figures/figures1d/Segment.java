@@ -26,14 +26,26 @@ public class Segment extends Base {
 
     public void setP2(Point p2) {
         this.p2 = p2;
+        Point cent = new Point();
+        cent.x = Math.abs(p2.x+p1.x)/2;
+        cent.y = Math.abs(p2.y+p1.y)/2;
+        this.setCenter(cent);
     }
 
     public Segment(Point p1, Point p2) {
-        this.p1 = p1;
-        this.p2 = p2;
+        setP1(p1);
+        setP2(p2);
     }
 
-    public void draw(Graphics2D g2) {
-        g2.draw(new Line2D.Double(p1, p2));
+    @Override
+    public void move(Point newCenter) {
+        this.setP1(new Point(p1.x+newCenter.x, p1.y+newCenter.y));
+        this.setP2(new Point(p2.x+newCenter.x, p2.y+newCenter.y));
+        this.setCenter(newCenter);
+    }
+
+    public void draw(Graphics2D g) {
+        g.setColor(this.getLineColor());
+        g.draw(new Line2D.Double(p1, p2));
     }
 }

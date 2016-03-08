@@ -5,7 +5,6 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class Rectangle extends Polygon{
-    protected final int pointNumber = 2;
     public Rectangle() {
 
     }
@@ -22,6 +21,7 @@ public class Rectangle extends Polygon{
     }
     @Override
     public void draw(Graphics2D g) {
+        g.setColor(this.getFillColor());
        int[] res = this.getCoordinates();
         g.fillRect(res[0], res[1], res[2], res[3]);
     }
