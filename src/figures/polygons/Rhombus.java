@@ -1,5 +1,5 @@
 package figures.polygons;
 
 
-public class Rhombus {
+public class Rhombus extends Polygon{
 }

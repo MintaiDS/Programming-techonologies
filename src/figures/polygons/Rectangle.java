@@ -1,5 +1,5 @@
 package figures.polygons;
 
 
-public class Rectangle {
+public class Rectangle extends Polygon{
 }

@@ -5,10 +5,11 @@ import java.awt.*;
 
 public class Base {
     public Point center = null;
+    private Color lineColor;
 
-    void draw() {};
+    void draw() {}
 
-    void move() {};
+    void move() {}
 
-    void location() {};
+    void location() {}
 }
