@@ -23,5 +23,7 @@ public class Line extends Segment {
             p1.x -= xdif;
             p1.y -= ydif;
         }
+        this.p2 = p2;
+        this.setP1(p1);
     }
 }

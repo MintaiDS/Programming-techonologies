@@ -22,5 +22,6 @@ public class Ray extends Segment {
             p2.x += xdif;
             p2.y += ydif;
         }
+        this.p2 = p2;
     }
 }
