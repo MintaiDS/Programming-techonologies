@@ -18,7 +18,7 @@ public class Ray extends Segment {
         int y = getP1().y;
         int xdif = p2.x - x;
         int ydif = p2.y - y;
-        while ((p2.x <= 3000 && p2.x >= 0)||(p2.y <= 3000 && p2.y >=0)){
+        while ((p2.x <= 3000 && p2.x >= 0 && xdif != 0)||(p2.y <= 3000 && p2.y >=0 && ydif !=0)){
             p2.x += xdif;
             p2.y += ydif;
         }
