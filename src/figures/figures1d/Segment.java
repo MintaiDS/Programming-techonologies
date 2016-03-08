@@ -8,7 +8,7 @@ import java.awt.geom.Line2D;
 
 public class Segment extends Base {
 
-    private Point p1, p2;
+    protected Point p1, p2;
 
     public Segment() { }
 

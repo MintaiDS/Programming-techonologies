@@ -1,12 +1,31 @@
 package gui;
 
+import gui.listeners.IListenersManager;
+import gui.listeners.implementations.SegmentListenersManager;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 
 public class MainFrame extends JFrame {
 
     PaintPanel paintPanel;
     JPanel instrumentsPanel;
+
+    boolean drawingPoint = false;
+
+    boolean drawingSegment = false;
+    boolean drawingRay = false;
+    boolean drawingLine = false;
+
+    boolean drawingCircle = false;
+    boolean drawingEllipse = false;
+
+    IListenersManager listenersManager;
+
+    MouseListener currentPaintPanelMouseListener = null;
+    MouseMotionListener currentPaintPanelMouseMotionListener = null;
 
 
     public JPanel createInstrumentsPanel() {
@@ -20,6 +39,25 @@ public class MainFrame extends JFrame {
 
         JButton circle = new JButton("Circle");
         JButton ellipse = new JButton("Ellipse");
+
+
+        segment.addActionListener(e -> {
+            if(currentPaintPanelMouseListener != null) {
+                paintPanel.removeMouseListener(currentPaintPanelMouseListener);
+            }
+            if(currentPaintPanelMouseMotionListener != null) {
+                paintPanel.removeMouseMotionListener(currentPaintPanelMouseMotionListener);
+            }
+
+            drawingSegment = true;
+            listenersManager = new SegmentListenersManager();
+            currentPaintPanelMouseListener = listenersManager.createMouseListener(paintPanel);
+            currentPaintPanelMouseMotionListener = listenersManager.createMouseMotionListener(paintPanel);
+
+            paintPanel.addMouseListener(currentPaintPanelMouseListener);
+            paintPanel.addMouseMotionListener(currentPaintPanelMouseMotionListener);
+        });
+
 
         panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
 
@@ -37,7 +75,6 @@ public class MainFrame extends JFrame {
         return panel;
     }
 
-
     public MainFrame() {
         paintPanel = new PaintPanel(this);
         instrumentsPanel = createInstrumentsPanel();
@@ -47,11 +84,10 @@ public class MainFrame extends JFrame {
         this.add(instrumentsPanel, BorderLayout.EAST);
     }
 
-
     public static void main(String[] args) {
         MainFrame mf = new MainFrame();
 
-        int width = 1000;
+        int width = 900;
         int height = 600;
         mf.setSize(new Dimension(width, height));
 
