@@ -69,7 +69,6 @@ public class MainFrame extends JFrame {
 
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.anchor = GridBagConstraints.NORTH;
-
         gbc.ipady = 5;
 
 
