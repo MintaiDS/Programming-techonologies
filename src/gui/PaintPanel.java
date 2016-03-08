@@ -15,29 +15,22 @@ import java.util.ArrayList;
 
 public class PaintPanel extends JPanel {
 
-    MainFrame mainFrame;
+    private ArrayList<Base> figures = new ArrayList<>();
 
-    int width = 800;
-    int height = 600;
-
-    ArrayList<Base> figures = new ArrayList<>();
 
     protected void paintComponent(Graphics g) {
         Graphics2D g2 = (Graphics2D) g;
-
-        if(mainFrame.drawingSegment) {
-            Segment segment = (Segment)mainFrame.listenersManager.provideDataForDrawing();
-            segment.draw(g2);
-        }
-
-        if(mainFrame.drawingRay) {
-
-        }
+        figures.forEach(item -> item.draw(g2));
     }
 
+    public void addFigure(Base figure) {
+        figures.add(figure);
+        repaint();
+    }
 
-    public PaintPanel(MainFrame mainFrame) {
-        this.mainFrame = mainFrame;
+    public PaintPanel() {
+        int width = 800;
+        int height = 600;
         this.setSize(new Dimension(width, height));
     }
 }

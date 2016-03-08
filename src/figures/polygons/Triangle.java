@@ -4,7 +4,7 @@ package figures.polygons;
 
 public class Triangle extends Polygon{
     @Override
-    public int getPointsNumber() {
+    public int getEffectivePointsNumber() {
         return 3;
     }
 }

@@ -8,7 +8,7 @@ import java.awt.geom.Line2D;
 
 public class Segment extends Base {
 
-    protected Point p1, p2;
+    protected Point p1 = null, p2 = null;
 
     public Segment() { }
 
@@ -18,6 +18,16 @@ public class Segment extends Base {
 
     public void setP1(Point p1) {
         this.p1 = p1;
+    }
+
+    public void addPoint(Point point) {
+        if(p1 == null) {
+            p1 = point;
+            return;
+        }
+        if(p2 == null) {
+            p2 = point;
+        }
     }
 
     public Point getP2() {
@@ -47,5 +57,13 @@ public class Segment extends Base {
     public void draw(Graphics2D g) {
         g.setColor(this.getLineColor());
         g.draw(new Line2D.Double(p1, p2));
+    }
+
+    public int getPointsNumber() {
+        return p1 == null ? 0 : 1 + (p2 == null ? 0 : 1);
+    }
+
+    public int getEffectivePointsNumber() {
+        return 2;
     }
 }

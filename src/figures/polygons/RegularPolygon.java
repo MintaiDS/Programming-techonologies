@@ -6,6 +6,11 @@ import java.awt.geom.AffineTransform;
 import java.util.ArrayList;
 
 public class RegularPolygon extends Polygon {
+
+    public RegularPolygon(int number) {
+        fillArray(number);
+    }
+
     public void fillArray(int number){
         ArrayList<Point> arr = this.getPoints();
         ArrayList<Point> res = new ArrayList<>();

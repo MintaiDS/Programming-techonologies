@@ -24,4 +24,12 @@ public class Ray extends Segment {
         }
         this.p2 = p2;
     }
+
+    public void addPoint(Point point) {
+        if(p1 == null) {
+            p1 = point;
+            return;
+        }
+        this.setP2(point);
+    }
 }

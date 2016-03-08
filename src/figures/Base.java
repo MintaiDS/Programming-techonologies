@@ -35,4 +35,10 @@ public class Base {
     public Point location() {
         return this.getCenter();
     }
+
+    public void addPoint(Point point) {};
+
+    public int getEffectivePointsNumber() { return 0; };
+
+    public int getPointsNumber() { return 0; };
 }

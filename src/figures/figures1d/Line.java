@@ -26,4 +26,12 @@ public class Line extends Segment {
         this.p2 = p2;
         this.setP1(p1);
     }
+
+    public void addPoint(Point point) {
+        if(p1 == null) {
+            p1 = point;
+            return;
+        }
+        this.setP2(point);
+    }
 }

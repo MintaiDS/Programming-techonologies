@@ -8,18 +8,26 @@ import java.util.ArrayList;
 
 public class Polygon extends Base2D {
     ArrayList <Point> points;
+    int n;
 
-    public Polygon() {
+    public Polygon() { this.points = new ArrayList<>(); }
+
+    public Polygon(int n) {
+        this.n = n;
         this.points = new ArrayList<>();
     }
+
     public void addPoint(Point p){
+        System.out.println(111);
         if (points.size() == 0)
             this.setCenter(p);
         points.add(p);
     }
+
     public int getPointsNumber(){
         return points.size();
     }
+
     public ArrayList<Point> getPoints() {
         return points;
     }
@@ -52,5 +60,9 @@ public class Polygon extends Base2D {
             p.y += pt.y;
         }
         this.setCenter(newCenter);
+    }
+
+    public int getEffectivePointsNumber() {
+        return n;
     }
 }
