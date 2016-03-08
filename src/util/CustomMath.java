@@ -17,7 +17,12 @@ public class CustomMath {
 
         //k2*x + c2 = y -second line
         double k2 = (b1.getY() - b2.getY())/(b1.getX() - b2.getX());
+        if(b1.getX() - b2.getX() == 0) {
+            k2 = 0;
+        }
         double c2 = (b1.getY()*b2.getX() - b2.getY()*b1.getX())/(b2.getX() - b1.getX());
+
+        System.out.println(k2);
 
         //intersection
         double x = (c2 - c1)/(k1 - k2);
@@ -76,7 +81,4 @@ public class CustomMath {
             return result.get(1);
         }
     }
-
-
-
 }

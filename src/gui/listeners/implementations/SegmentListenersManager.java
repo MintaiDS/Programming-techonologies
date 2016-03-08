@@ -1,6 +1,8 @@
 package gui.listeners.implementations;
 
 
+import figures.Base;
+import figures.figures1d.Segment;
 import gui.listeners.IListenersManager;
 import util.CustomMath;
 import util.Pair;
@@ -18,6 +20,8 @@ public class SegmentListenersManager implements IListenersManager {
 
     boolean firstSelected = false, secondSelected = false;
 
+    Segment segment;
+
 
     public MouseListener createMouseListener(JPanel paintPanel) {
         return new MouseListener() {
@@ -31,6 +35,9 @@ public class SegmentListenersManager implements IListenersManager {
                 if(firstSelected && !secondSelected) {
                     second = new Point(e.getX(), e.getY());
                     secondSelected = true;
+
+                    segment = new Segment(first, second);
+
                     paintPanel.repaint();
                     System.out.println("Second press");
                 }
@@ -39,9 +46,8 @@ public class SegmentListenersManager implements IListenersManager {
                     second = new Point(e.getX(), e.getY());
                     firstSelected = true;
                     System.out.println("Press");
-                    paintPanel.repaint();
+                    //paintPanel.repaint();
                 }
-
             }
 
             @Override
@@ -71,22 +77,13 @@ public class SegmentListenersManager implements IListenersManager {
             @Override
             public void mouseMoved(MouseEvent e) {
                 if(firstSelected && !secondSelected) {
-
-                    second.x = e.getX();
-                    second.y = e.getY();
-
-                    paintPanel.repaint();
-                    System.out.println("Move");
+                    //System.out.println("Move");
                 }
             }
         };
     }
 
-    public ArrayList<Point> provideDataForDrawing() {
-        ArrayList<Point> result = new ArrayList<>();
-        result.add(first);
-        result.add(CustomMath.getRayEnd(first, second));
-        //result.add(second);
-        return result;
+    public Base provideDataForDrawing() {
+        return segment;
     }
 }

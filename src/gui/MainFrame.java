@@ -1,5 +1,6 @@
 package gui;
 
+import figures.figures1d.Segment;
 import gui.listeners.IListenersManager;
 import gui.listeners.implementations.SegmentListenersManager;
 
@@ -35,13 +36,13 @@ public class MainFrame extends JFrame {
 
         JButton line = new JButton("Line");
         JButton ray = new JButton("Ray");
-        JButton segment = new JButton("Segment");
+        JButton segmentButton = new JButton("Segment");
 
         JButton circle = new JButton("Circle");
         JButton ellipse = new JButton("Ellipse");
 
 
-        segment.addActionListener(e -> {
+        segmentButton.addActionListener(e -> {
             if(currentPaintPanelMouseListener != null) {
                 paintPanel.removeMouseListener(currentPaintPanelMouseListener);
             }
@@ -65,7 +66,7 @@ public class MainFrame extends JFrame {
 
         panel.add(line);
         panel.add(ray);
-        panel.add(segment);
+        panel.add(segmentButton);
 
         panel.add(circle);
         panel.add(ellipse);

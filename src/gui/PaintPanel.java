@@ -1,5 +1,6 @@
 package gui;
 
+import figures.Base;
 import figures.figures1d.Segment;
 import gui.MainFrame;
 
@@ -19,14 +20,14 @@ public class PaintPanel extends JPanel {
     int width = 800;
     int height = 600;
 
+    ArrayList<Base> figures = new ArrayList<>();
 
     protected void paintComponent(Graphics g) {
         Graphics2D g2 = (Graphics2D) g;
 
         if(mainFrame.drawingSegment) {
-            ArrayList<Point> points = mainFrame.listenersManager.provideDataForDrawing();
-            //g2.draw(new Line2D.Double(points.get(0), points.get(1)));
-            g2.draw(new Line2D.Double(points.get(0), points.get(1)));
+            Segment segment = (Segment)mainFrame.listenersManager.provideDataForDrawing();
+            segment.draw(g2);
         }
 
         if(mainFrame.drawingRay) {
