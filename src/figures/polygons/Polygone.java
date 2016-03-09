@@ -3,16 +3,18 @@ package figures.polygons;
 import figures.Base2D;
 
 import java.awt.*;
+import java.awt.geom.Line2D;
 import java.util.ArrayList;
+import java.awt.Polygon;
 
 
-public class Polygon extends Base2D {
+public class Polygone extends Base2D {
     ArrayList <Point> points;
     int n;
 
-    public Polygon() { this.points = new ArrayList<>(); }
+    public Polygone() { this.points = new ArrayList<>(); }
 
-    public Polygon(int n) {
+    public Polygone(int n) {
         this.n = n;
         this.points = new ArrayList<>();
     }
@@ -50,6 +52,8 @@ public class Polygon extends Base2D {
             number++;
         }
         g.fill(new java.awt.Polygon(xPoints, yPoints, pointNumber));
+        g.setColor(this.getLineColor());
+        g.draw(new java.awt.Polygon(xPoints, yPoints, pointNumber));
     }
 
     @Override
@@ -64,5 +68,18 @@ public class Polygon extends Base2D {
 
     public int getEffectivePointsNumber() {
         return n;
+    }
+
+    public Polygon getFigure(){
+        int pointNumber = this.getPointsNumber();
+        int[] xPoints = new int[pointNumber];
+        int[] yPoints = new int[pointNumber];
+        int number = 0;
+        for (Point p: points){
+            xPoints[number] = p.x;
+            yPoints[number] = p.y;
+            number++;
+        }
+        return new Polygon(xPoints, yPoints, pointNumber);
     }
 }

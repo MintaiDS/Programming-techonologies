@@ -2,9 +2,10 @@ package figures.polygons;
 
 
 import java.awt.*;
+import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 
-public class Rectangle extends Polygon{
+public class Rectangle extends Polygone{
     public Rectangle() {
 
     }
@@ -14,10 +15,10 @@ public class Rectangle extends Polygon{
         int[] res = new int[4];
         Point firstPoint = arr.get(0);
         Point secondPoint = arr.get(1);
-        res[0] = firstPoint.x;
-        res[1] = firstPoint.y;
-        res[2] = Math.abs(res[0]-secondPoint.x);
-        res[3] = Math.abs(res[1]-secondPoint.y);
+        res[0] = Math.min(firstPoint.x, secondPoint.x);
+        res[1] = Math.min(firstPoint.y, secondPoint.y);
+        res[2] = Math.abs(firstPoint.x-secondPoint.x);
+        res[3] = Math.abs(firstPoint.y-secondPoint.y);
         return res;
     }
 
@@ -37,9 +38,16 @@ public class Rectangle extends Polygon{
         g.setColor(this.getFillColor());
         int[] res = this.getCoordinates();
         g.fillRect(res[0], res[1], res[2], res[3]);
+        g.setColor(this.getLineColor());
+        g.drawRect(res[0], res[1], res[2], res[3]);
     }
 
     public int getEffectivePointsNumber() {
         return 2;
+    }
+
+    public Rectangle2D getRect(){
+        int[] points = getCoordinates();
+        return new Rectangle2D.Double(points[0], points[1], points[2], points[3]);
     }
 }

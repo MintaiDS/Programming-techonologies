@@ -5,7 +5,7 @@ import figures.figures1d.Line;
 import figures.figures1d.Ray;
 import figures.figures1d.Segment;
 import figures.polygons.*;
-import figures.polygons.Polygon;
+import figures.polygons.Polygone;
 import figures.polygons.Rectangle;
 import gui.listenerManager.FiguresListenerManager;
 
@@ -36,6 +36,10 @@ public class MainFrame extends JFrame {
         JButton circleButton = new JButton("Circle");
         JButton ellipseButton = new JButton("Ellipse");
 
+        JButton lineColorButton = new JButton("Line Color");
+        JButton fillColorButton = new JButton("Fill Color");
+        //JButton moveButton = new JButton("Move");
+
         JTextField polygonPointsNumber = new JTextField(3);
         JTextField regularPolygonPointsNumber = new JTextField(3);
 
@@ -50,7 +54,7 @@ public class MainFrame extends JFrame {
         ellipseButton.addActionListener(e -> setupPaintPanelMouseListener(new Ellipse()));
 
         polygonButton.addActionListener(e ->
-                setupPaintPanelMouseListener(new Polygon(getTextFieldIntValue(polygonPointsNumber))));
+                setupPaintPanelMouseListener(new Polygone(getTextFieldIntValue(polygonPointsNumber))));
 
         rectangleButton.addActionListener(e -> setupPaintPanelMouseListener(new Rectangle()));
 
@@ -61,6 +65,12 @@ public class MainFrame extends JFrame {
 
         triangleButton.addActionListener(e -> setupPaintPanelMouseListener(new Triangle()));
 
+        lineColorButton.setActionCommand("LINE");
+        fillColorButton.setActionCommand("FILL");
+        //moveButton.setActionCommand("MOVE");
+        lineColorButton.addActionListener(paintPanel);
+        fillColorButton.addActionListener(paintPanel);
+        //moveButton.addActionListener(paintPanel);
 
         GridBagLayout gbl = new GridBagLayout();
         panel.setLayout(gbl);
@@ -105,6 +115,12 @@ public class MainFrame extends JFrame {
         panel.add(rhombusButton, gbc);
         gbc.gridy++;
         panel.add(triangleButton, gbc);
+        gbc.gridy++;
+        panel.add(lineColorButton, gbc);
+        gbc.gridy++;
+        panel.add(fillColorButton, gbc);
+        //gbc.gridy++;
+       // panel.add(moveButton, gbc);
 
         panel.setBackground(Color.decode("#7986CB"));
         panel.setPreferredSize(new Dimension(105, 600));
@@ -115,6 +131,7 @@ public class MainFrame extends JFrame {
     public void setupPaintPanelMouseListener(Base figure) {
         removeCurrentPaintPanelMouseListener();
         setNewPaintPanelMouseListener(figure);
+        paintPanel.setDraw(true);
     }
 
     public void removeCurrentPaintPanelMouseListener() {
@@ -129,7 +146,12 @@ public class MainFrame extends JFrame {
     }
 
     public int getTextFieldIntValue(JTextField textField) {
-        return Integer.parseInt(textField.getText());
+        try {
+            return Integer.parseInt(textField.getText());
+        } catch (NumberFormatException e){
+            JOptionPane.showMessageDialog(null, "Enter correct points number!", "Error", JOptionPane.ERROR_MESSAGE);
+            return -1;
+        }
     }
 
     public MainFrame() {
@@ -154,6 +176,7 @@ public class MainFrame extends JFrame {
         mf.setLocation((screenWidth - width)/2, (screenHeight - height)/2);
 
         mf.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        mf.setResizable(false);
         mf.setVisible(true);
     }
 }

@@ -22,11 +22,11 @@ public class Segment extends Base {
 
     public void addPoint(Point point) {
         if(p1 == null) {
-            p1 = point;
+            setP1(point);
             return;
         }
         if(p2 == null) {
-            p2 = point;
+            setP2(point);
         }
     }
 
@@ -65,5 +65,9 @@ public class Segment extends Base {
 
     public int getEffectivePointsNumber() {
         return 2;
+    }
+
+    public Line2D getFigure(){
+        return new Line2D.Double(p1.x, p1.y, p2.x, p2.y);
     }
 }
